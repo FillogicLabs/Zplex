@@ -19,7 +19,7 @@ First define your ZPL templates
 
 ```
 defmodule MyTemplates do
-  import Zplex.TemplateDSL
+  import Zplex
 
   template :shipping_label, label_size: {4, :inch, 6, :inch} do
     text :name, font: :a, position: {:absolute, x: {:mm, 10}, y: {:mm, 5}},  align: :left
