@@ -61,15 +61,17 @@ defmodule Zplex.Generator do
 
     {x, y} = calc_position(pos, state, 0, h)
 
-    {barcode_width, barcode_height} = case state.dpi do
-      300 -> {3, 100}
-      203 -> {2, 75}
-    end
+    {barcode_width, barcode_height} =
+      case state.dpi do
+        300 -> {3, 100}
+        203 -> {2, 75}
+      end
 
-    zpl = case format do
-      :code128 -> "^FO#{x},#{y}^BC^FD#{code}^FS"
-      :upc_a -> "^FO#{x},#{y}^BY#{barcode_width}^BUN,#{barcode_height}^FD#{code}^FS"
-    end
+    zpl =
+      case format do
+        :code128 -> "^FO#{x},#{y}^BC^FD#{code}^FS"
+        :upc_a -> "^FO#{x},#{y}^BY#{barcode_width}^BUN,#{barcode_height}^FD#{code}^FS"
+      end
 
     {%{state | x: x, y: y + h, zpl: state.zpl ++ [zpl]}, zpl}
   end

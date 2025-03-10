@@ -13,6 +13,7 @@ defmodule Zplex do
       Module.delete_attribute(__MODULE__, :elements)
       Module.register_attribute(__MODULE__, :elements, accumulate: true)
       unquote(block)
+
       def unquote(name)(data, dpi) do
         elements = __elements__()
         label_dims = LabelSize.convert(unquote(size), dpi)
